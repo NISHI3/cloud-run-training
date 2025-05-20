@@ -20,6 +20,9 @@
             <strong>{{ message[0] }}:</strong>
             {{ message[1] }}
             <small>({{ message[2] }})</small>
+            <form method="POST" action="/delete/{{ message[0] }}" style="display:inline;">
+                <button type="submit" onclick="return confirm('削除してよろしいですか？')">Delete</button>
+            </form>
         </li>
         {% endfor %}
     </ul>

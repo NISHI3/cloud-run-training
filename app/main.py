@@ -55,6 +55,15 @@ def index():
 
     return render_template("index.html", messages=messages)
 
+@app.route("/delete/<int:message_id>", methods=["POST"])
+def delete_message(message_id):
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("DELETE FROM messages WHERE id = %s", (message_id,))
+    cur.close()
+    conn.close()
+    return redirect("/")
+
 
 # アプリケーション起動時にDBを初期化
 with app.app_context():
